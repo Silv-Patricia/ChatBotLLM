@@ -5,6 +5,14 @@ const mapaConversas = new Map();
 let conversaAtualId = null;
 let contadorConversas = 0;
 
+function alternarTema() {
+    const body = document.body;
+    body.classList.toggle('dark-mode');
+    
+    const isDark = body.classList.contains('dark-mode');
+    localStorage.setItem('tema', isDark ? 'escuro' : 'claro');
+}
+
 function toggleSidebar() {
     document.body.classList.toggle('sidebar-closed');
     const btnOpen = document.getElementById('btn-open-sidebar');
@@ -276,6 +284,18 @@ function confirmarExclusao() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+    const temaSalvo = localStorage.getItem('tema');
+    const chkTema = document.getElementById('chk-tema');
+
+    if (temaSalvo === 'escuro') {
+        document.body.classList.add('dark-mode');
+        if (chkTema) chkTema.checked = true;
+    }
+
+    if (chkTema) {
+        chkTema.addEventListener('change', alternarTema);
+    }
+
     const inputNovoNome = document.getElementById("inputNovoNome");
     if (inputNovoNome) {
         inputNovoNome.addEventListener("keydown", (e) => {

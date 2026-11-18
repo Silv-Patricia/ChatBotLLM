@@ -1,7 +1,105 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:wght@700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+:root {
+    --fonte-titulos: 'Montserrat', sans-serif;
+    --fonte-corpo: 'Inter', Arial, sans-serif;
+
+    --cor-bg-pagina: #FFFFFF;
+    --cor-bg-card: #F8F9FA;
+    --cor-bg-input: #FFFFFF;
+    --cor-bg-input-readonly: #E9ECEF;
+    --cor-bg-hover: #E9ECEF;
+    --cor-bg-ativa: #D3E3FD;
+    --cor-bg-balao-ia: #F1F3F4;
+
+    --cor-texto-principal: #202124;
+    --cor-texto-titulo: #312E81;
+    --cor-texto-ativa: #041E49;
+    --cor-texto-readonly: #6C757D;
+    --cor-texto-autoria: #4B5563;
+
+    --cor-primaria-link: #0D6EFD;
+    --cor-primaria-hover: #0B5ED7;
+    --cor-primaria-texto: #FFFFFF;
+
+    --cor-borda: #DEE2E6;
+    --cor-borda-foco: #4F46E5;
+    --cor-bg-code: rgba(0, 0, 0, 0.07);
+    --sombra-card: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    --sombra-input-foco: 0 0 0 0.25rem rgba(79, 70, 229, 0.25);
+}
+
+body.dark-mode {
+    --cor-bg-pagina: #111827;
+    --cor-bg-card: #1F2937;
+    --cor-bg-input: #374151;
+    --cor-bg-input-readonly: #111827;
+    --cor-bg-hover: #374151;
+    --cor-bg-ativa: #374151;
+    --cor-bg-balao-ia: #1F2937;
+
+    --cor-texto-principal: #F3F4F6;
+    --cor-texto-titulo: #E0E7FF;
+    --cor-texto-ativa: #E0E7FF;
+    --cor-texto-readonly: #9CA3AF;
+    --cor-texto-autoria: #9CA3AF;
+
+    --cor-primaria-link: #818CF8;
+    --cor-primaria-hover: #C7D2FE;
+    --cor-primaria-texto: #FFFFFF;
+
+    --cor-borda: #374151;
+    --cor-borda-foco: #818CF8;
+    --cor-bg-code: rgba(255, 255, 255, 0.12);
+    --sombra-card: 0px 4px 15px rgba(0, 0, 0, 0.6);
+    --sombra-input-foco: 0 0 0 0.25rem rgba(129, 140, 248, 0.25);
+}
 
 * {
-    font-family: "Inter", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--fonte-corpo);
+}
+
+body {
+    background-color: var(--cor-bg-pagina) !important;
+    color: var(--cor-texto-principal) !important;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#main-content,
+#chat-history,
+.bg-white {
+    background-color: var(--cor-bg-pagina) !important;
+    color: var(--cor-texto-principal) !important;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#sidebar,
+.bg-light {
+    background-color: var(--cor-bg-card) !important;
+    color: var(--cor-texto-principal) !important;
+    border-color: var(--cor-borda) !important;
+    transition: background-color 0.3s ease, border-color 0.3s ease, margin 0.3s ease-in-out;
+}
+
+.border-bottom,
+.border-top,
+.border-end {
+    border-color: var(--cor-borda) !important;
+}
+
+.text-muted {
+    color: var(--cor-texto-readonly) !important;
+}
+
+h1, h2, h3, h4, h5, h6,
+.form-check-label {
+    font-family: var(--fonte-titulos);
+    color: var(--cor-texto-titulo) !important;
 }
 
 .transition-layout {
@@ -16,39 +114,6 @@
 .sidebar-closed #main-content {
     flex: 0 0 100%;
     max-width: 100%;
-}
-
-.balao-mensagem {
-    max-width: 75%;
-    padding: 12px 18px;
-    border-radius: 20px;
-    font-size: 1rem;
-    line-height: 1.5;
-    word-wrap: break-word;
-}
-
-.mensagem-usuario {
-    background-color: #0d6efd;
-    color: white;
-    align-self: flex-end;
-    border-bottom-right-radius: 4px;
-}
-
-.mensagem-ia {
-    background-color: #f1f3f4;
-    color: #202124;
-    align-self: flex-start;
-    border-bottom-left-radius: 4px;
-    border: 1px solid #e0e0e0;
-}
-
-.item-conversa {
-    cursor: pointer;
-    transition: background 0.2s;
-}
-
-.item-conversa:hover {
-    background-color: #e9ecef;
 }
 
 @media (max-width: 768px) {
@@ -73,20 +138,28 @@
 }
 
 .item-conversa {
+    background-color: transparent !important;
+    color: var(--cor-texto-principal) !important;
     border-radius: 20px !important;
     margin-bottom: 4px;
     border: none !important;
     padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.item-conversa:hover {
+    background-color: var(--cor-bg-hover) !important;
 }
 
 .item-conversa.conversa-ativa {
-    background-color: #d3e3fd !important;
-    color: #041e49;
+    background-color: var(--cor-bg-ativa) !important;
+    color: var(--cor-texto-ativa) !important;
     font-weight: 600;
 }
 
 .btn-opcoes-conversa {
-    color: #444746;
+    color: var(--cor-texto-principal);
     border: none;
     width: 32px;
     height: 32px;
@@ -99,47 +172,52 @@
 
 .btn-opcoes-conversa:hover,
 .btn-opcoes-conversa[aria-expanded="true"] {
-    background-color: rgba(0, 0, 0, 0.08);
+    background-color: var(--cor-bg-hover);
     opacity: 1;
 }
 
 .menu-gemini {
-    background-color: white !important;
-    border: 1px solid white !important;
+    background-color: var(--cor-bg-card) !important;
+    border: 1px solid var(--cor-borda) !important;
     border-radius: 16px !important;
     padding: 8px 0 !important;
     min-width: 180px;
+    box-shadow: var(--sombra-card) !important;
 }
 
 .menu-gemini .dropdown-item {
+    color: var(--cor-texto-principal) !important;
     font-size: 0.92rem;
     padding: 8px 16px;
 }
 
 .menu-gemini .dropdown-item:hover {
-    background-color: grey !important;
+    background-color: var(--cor-bg-hover) !important;
 }
 
-#modalRenomear .modal-content,
-#modalExcluir .modal-content {
-    background-color: #1e1f20 !important;
-    border-radius: 24px !important;
-    padding: 8px;
-    border: 1px solid #333537;
-}
-
-#modalRenomear #inputNovoNome {
-    border-radius: 12px;
-    padding: 12px 16px;
-}
-
-#modalRenomear #inputNovoNome:focus {
-    box-shadow: 0 0 0 2px #1e1f20;
-    border-color: #1e1f20 !important;
+.balao-mensagem {
+    max-width: 75%;
+    padding: 12px 18px;
+    border-radius: 20px;
+    font-size: 1rem;
+    line-height: 1.5;
+    word-wrap: break-word;
 }
 
 .mensagem-usuario {
+    background-color: var(--cor-primaria-link);
+    color: var(--cor-primaria-texto);
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
     white-space: pre-wrap;
+}
+
+.mensagem-ia {
+    background-color: var(--cor-bg-balao-ia);
+    color: var(--cor-texto-principal);
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+    border: 1px solid var(--cor-borda);
 }
 
 .mensagem-ia p:last-child,
@@ -164,7 +242,8 @@
 
 .mensagem-ia hr {
     margin: 12px 0;
-    opacity: 0.2;
+    border-color: var(--cor-borda);
+    opacity: 0.4;
 }
 
 .mensagem-ia table {
@@ -172,25 +251,26 @@
     border-collapse: collapse;
     margin: 12px 0;
     font-size: 0.92rem;
-    background-color: #ffffff;
+    background-color: var(--cor-bg-card);
+    color: var(--cor-texto-principal);
     border-radius: 8px;
     overflow: hidden;
 }
 
 .mensagem-ia th,
 .mensagem-ia td {
-    border: 1px solid #dee2e6;
+    border: 1px solid var(--cor-borda);
     padding: 8px 12px;
     text-align: left;
 }
 
 .mensagem-ia th {
-    background-color: #e9ecef;
+    background-color: var(--cor-bg-hover);
     font-weight: 600;
 }
 
 .mensagem-ia tr:nth-child(even) {
-    background-color: #f8f9fa;
+    background-color: var(--cor-bg-pagina);
 }
 
 .mensagem-ia pre {
@@ -203,7 +283,7 @@
 }
 
 .mensagem-ia code {
-    background-color: rgba(0, 0, 0, 0.07);
+    background-color: var(--cor-bg-code);
     padding: 2px 5px;
     border-radius: 4px;
     font-family: monospace;
@@ -213,4 +293,115 @@
 .mensagem-ia pre code {
     background-color: transparent;
     padding: 0;
+}
+
+.form-control {
+    background-color: var(--cor-bg-input) !important;
+    color: var(--cor-texto-principal) !important;
+    border: 1px solid var(--cor-borda) !important;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.form-floating > label {
+    color: var(--cor-texto-readonly) !important;
+}
+
+.form-floating > .form-control:focus ~ label,
+.form-floating > .form-control:not(:placeholder-shown) ~ label {
+    color: var(--cor-texto-readonly) !important;
+}
+
+.form-floating > .form-control:focus ~ label::after,
+.form-floating > .form-control:not(:placeholder-shown) ~ label::after {
+    background-color: transparent !important;
+}
+
+.form-control::placeholder {
+    color: var(--cor-texto-readonly) !important;
+}
+
+.form-control::placeholder {
+    color: var(--cor-texto-readonly) !important;
+}
+
+.form-floating > .form-control::placeholder {
+    color: transparent !important;
+}
+
+.form-control:focus {
+    background-color: var(--cor-bg-input) !important;
+    color: var(--cor-texto-principal) !important;
+    border-color: var(--cor-borda-foco) !important;
+    box-shadow: var(--sombra-input-foco) !important;
+}
+
+.form-control[readonly] {
+    background-color: var(--cor-bg-input-readonly) !important;
+    color: var(--cor-texto-readonly) !important;
+}
+
+#modalRenomear .modal-content,
+#modalExcluir .modal-content {
+    background-color: var(--cor-bg-card) !important;
+    color: var(--cor-texto-principal) !important;
+    border-radius: 24px !important;
+    padding: 8px;
+    border: 1px solid var(--cor-borda);
+    box-shadow: var(--sombra-card);
+}
+
+#modalRenomear #inputNovoNome {
+    border-radius: 12px;
+    padding: 12px 16px;
+}
+
+.tema-toggle {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.checkbox-tema {
+    display: none;
+}
+
+.label-tema {
+    background-color: var(--cor-borda);
+    border-radius: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    position: relative;
+    height: 28px;
+    width: 54px;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease;
+}
+
+.icone-tema {
+    font-size: 14px;
+    line-height: 1;
+    user-select: none;
+}
+
+body.dark-mode .label-tema {
+    background-color: var(--cor-primaria-link);
+}
+
+.label-tema .bola {
+    background-color: #FFFFFF;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    height: 24px;
+    width: 24px;
+    transition: transform 0.3s ease;
+    z-index: 2;
+}
+
+.checkbox-tema:checked + .label-tema .bola {
+    transform: translateX(26px);
 }
